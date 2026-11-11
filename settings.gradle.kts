@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "androidtemplate"
+rootProject.name = "recetas"
 include(":app")

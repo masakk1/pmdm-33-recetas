@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace = "com.pmdm.androidtemplate"
+    namespace = "com.pmdm.recetas"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.pmdm.androidtemplate"
+        applicationId = "com.pmdm.recetas"
         minSdk = 28
         targetSdk = 34
         versionCode = 1

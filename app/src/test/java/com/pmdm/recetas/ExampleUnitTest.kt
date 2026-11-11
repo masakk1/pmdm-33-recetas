@@ -1,4 +1,4 @@
-package com.pmdm.androidtemplate
+package com.pmdm.recetas
 
 import org.junit.Test
 

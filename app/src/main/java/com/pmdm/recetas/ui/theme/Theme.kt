@@ -1,4 +1,4 @@
-package com.pmdm.androidtemplate.ui.theme
+package com.pmdm.recetas.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -33,7 +33,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun AndroidTemplateTheme(
+fun RecetasTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
