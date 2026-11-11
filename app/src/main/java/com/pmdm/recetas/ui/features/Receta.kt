@@ -1,5 +1,7 @@
 package com.pmdm.recetas.ui.features
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,8 +19,12 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.pmdm.recetas.R
 import com.pmdm.recetas.ui.composables.buttonlike.ButtonLike
 
 data class ButtonLikeUiState(
@@ -32,6 +38,7 @@ fun Receta(
     recipeName: String,
     recipeDescription: String,
     recipeChef: String,
+    recipeBanner: Painter,
     onLiked: () -> Unit
 ) {
     ElevatedCard(
@@ -39,24 +46,32 @@ fun Receta(
             defaultElevation = 6.dp
         )
     ) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier.padding(8.dp)
-        ) {
-            Text(recipeName, style = MaterialTheme.typography.headlineSmall)
-            Text(recipeDescription)
+        Column {
+            Image(
+                painter = recipeBanner,
+                contentDescription = recipeName,
+                modifier = Modifier.clip(shape = CardDefaults.shape)
+            )
 
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier .fillMaxWidth()
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.padding(8.dp)
             ) {
-                Text(recipeChef)
-                ButtonLike(
-                    liked = likeButtonState.liked,
-                    likes = likeButtonState.likeCount,
-                    onLiked = onLiked
-                )
+                Text(recipeName, style = MaterialTheme.typography.headlineSmall)
+                Text(recipeDescription)
+
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(recipeChef)
+                    ButtonLike(
+                        liked = likeButtonState.liked,
+                        likes = likeButtonState.likeCount,
+                        onLiked = onLiked
+                    )
+                }
             }
         }
     }
@@ -73,6 +88,7 @@ fun RecetaPreview() {
         recipeName = "Magdalenas de la abuela",
         recipeDescription = "Fabulosas magdalenas con pepitas de chocolate y un suave sabor a naranja.",
         recipeChef = "Carlos Arguiñano",
+        recipeBanner = painterResource(R.drawable.magdalenas),
         onLiked = {
             val newLiked = !likeButtonUiState.liked
             val newCount = if (newLiked) likeButtonUiState.likeCount + 1 else likeButtonUiState.likeCount - 1

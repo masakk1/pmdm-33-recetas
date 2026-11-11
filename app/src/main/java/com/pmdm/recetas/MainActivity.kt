@@ -17,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.pmdm.recetas.ui.features.ButtonLikeUiState
@@ -40,7 +41,7 @@ fun RecetaPreview() {
 
     // Aquí definiremos los estados.
     var likeUiState by remember {
-        mutableStateOf(ButtonLikeUiState(likeCount = 8, liked = false))
+        mutableStateOf(ButtonLikeUiState(likeCount = 8, liked = true))
     }
     val onLocallyLikePressed: () -> Unit = {
         val newLiked = !likeUiState.liked
@@ -67,6 +68,7 @@ fun RecetaPreview() {
                 recipeName = "Magdalemas de la abuela",
                 recipeDescription = "Fabulosas magdalenas con pepitas de chocolate y un suave sabor a naranja.",
                 recipeChef = "Carlos Arguiñano",
+                recipeBanner = painterResource(R.drawable.magdalenas),
                 onLiked = onLocallyLikePressed
             )
             Spacer(modifier = Modifier.size(20.dp))
